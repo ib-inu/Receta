@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'BellaStella';
+    src: url('../fonts/bella_stella_-_personal_use.woff2') format('woff2'),
+        url('../fonts/bella_stella_-_personal_use.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    box-shadow: 0 0 5px darkslategray;
+    color: darkslategray;
+
+
+    .header__logo {
+        font-family: 'BellaStella', sans-serif;
+        font-size: 2.5em;
+    }
+
+    .header__search {
+        position: relative;
+
+        .header__search-bar {
+            width: 20em;
+            height: 3em;
+            border-radius: 30px;
+            border: 1px solid gray;
+            padding-left: 1em;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #007BFF;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+        }
+
+        .header__search-btn {
+            position: absolute;
+            width: 2em;
+            height: 2em;
+            right: 1em;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background-color: #007bff9e;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+
+
+
+    .header__bookmark-title {
+        cursor: pointer;
+        transition: color .5s ease;
+
+        &:hover {
+            color: rgb(79, 129, 129);
+        }
+    }
+
+    .header__bookmark-items {
+        position: absolute;
+        background-color: darkslategray;
+        color: white;
+        right: 1em;
+        border-radius: 1.5em;
+        overflow: hidden;
+        min-height: 15em;
+
+        ul {
+            list-style: none;
+
+            li {
+                padding: 1em;
+                transition: background-color .3s ease;
+                border-bottom: 1px solid rgba(141, 141, 141, 0.552);
+
+                :nth-last-of-type() {
+                    border-bottom: none;
+                }
+
+                &:hover {
+                    background-color: rgb(79, 129, 129);
+                    border-radius: 1.5em;
+
+                }
+            }
+        }
+    }
+}

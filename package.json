@@ -1,0 +1,10 @@
+{
+  "name": "recito",
+  "version": "1.0.0",
+  "scripts": {
+    "start": " index.html"
+  },
+  "author": "Ibnu Muhthar",
+  "license": "ISC",
+  "description": ""
+}
