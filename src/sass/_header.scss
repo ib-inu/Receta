@@ -1,0 +1,118 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    box-shadow: 0 0 5px $primary-color;
+    font-size: 1.2em;
+
+    @media (max-width:400px) {
+        padding: 1em;
+    }
+
+
+    .header__logo {
+        font-family: 'BellaStella', sans-serif;
+        font-size: 2.5em;
+
+        @media (max-width:400px) {
+            font-size: 2em;
+        }
+    }
+
+    .header__search {
+        position: relative;
+
+        .header__search-bar {
+            width: 20em;
+            height: 3em;
+            border-radius: 30px;
+            border: 1px solid gray;
+            padding-left: 1em;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+
+            @media (max-width:500px) {
+                width: 10em;
+            }
+
+            &:focus {
+                outline: none;
+                border-color: #007BFF;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+        }
+
+        .header__search-btn {
+            position: absolute;
+            width: 2em;
+            height: 2em;
+            right: 1em;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background-color: #007bff9e;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+
+
+
+    .header__bookmark-title {
+        cursor: pointer;
+        transition: color .5s ease;
+
+        &:hover {
+            color: rgb(79, 129, 129);
+        }
+    }
+
+    .header__bookmark-items {
+        z-index: 1001;
+        position: absolute;
+        background-color: $primary-color;
+        right: 1em;
+        border-radius: 1.5em;
+        overflow: hidden;
+        min-height: 15em;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+        visibility: hidden;
+
+
+        &.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                padding: 1em;
+                transition: background-color .3s ease;
+                border-bottom: 1px solid rgba(141, 141, 141, 0.552);
+                color: white;
+
+
+                &:last-child {
+                    border: none;
+                }
+
+                &:hover {
+                    background-color: rgb(79, 129, 129);
+                    border-radius: 1.5em;
+
+                }
+            }
+        }
+    }
+}

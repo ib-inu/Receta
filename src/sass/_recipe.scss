@@ -1,0 +1,123 @@
+.recipe-details {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-height: 700px) {
+        height: 700px;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: -1;
+    }
+
+    &__modal {
+        background-color: #fff;
+        padding: 2em;
+        max-height: 90vh;
+        overflow-y: scroll;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+
+
+    }
+
+    &__img {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        height: 200px;
+        width: 200px;
+
+
+        &-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+
+
+    &__info {
+        display: flex;
+        justify-content: center;
+        gap: 2em;
+        flex-wrap: wrap;
+
+        @media (max-width:450px) {}
+
+
+        span {
+            display: block;
+            margin-bottom: 0.5em;
+            font-size: 1.1rem;
+
+            @media (max-width:450px) {
+                font-size: .8rem;
+            }
+        }
+    }
+
+    &__bookmark {
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+
+        @media (max-width:450px) {
+            font-size: .8rem;
+        }
+
+        &:hover {
+            background-color: lighten($primary-color , 10%);
+        }
+    }
+
+    &__ingredients {
+        grid-column: 1 / -1;
+
+        h2 {
+            text-align: center;
+        }
+
+        &-list {
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2em;
+            justify-content: center;
+
+            .recipe-details__ingredient-item {
+                padding: 0.5em 0;
+                border-bottom: 1px solid #ccc;
+                margin: 0 2em;
+
+            }
+        }
+    }
+}

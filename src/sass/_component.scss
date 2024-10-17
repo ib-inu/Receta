@@ -1,0 +1,33 @@
+.spinner-div {
+    position: fixed;
+    /* Fixed position relative to the viewport */
+    top: 30%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Shift by 50% of its own size for perfect centering */
+    z-index: 2001;
+    /* Ensures it's on top of everything */
+}
+
+.spinner-div__loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #a3a3a3;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

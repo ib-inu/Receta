@@ -3,20 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Get the Recito</title>
+    <title>Get recipe | Recito</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <link rel="stylesheet" href="src/sass/main.css" />
   </head>
+  <script type="module" src="src/js/controller.js"></script>
   <body>
     <div class="container">
       <header class="header">
         <h2 class="header__logo">Recito</h2>
 
         <form class="header__search">
-          <input type="search" class="header__search-bar" />
+          <input type="text" class="header__search-bar" />
           <button class="header__search-btn">
             <span>🍔</span>
           </button>
@@ -33,6 +34,108 @@
           </div>
         </div>
       </header>
+      <div class="add-recipe">
+        <p class="add-recipe__description">
+          Add your own recipe
+          <i class="add-recipe__icon fa-regular fa-square-plus"></i>
+        </p>
+      </div>
+
+      <form class="add-recipe__form">
+        <h2 class="add-recipe__title">Recipe Data</h2>
+
+        <label for="recipe_name" class="add-recipe__label">Title:</label>
+        <input
+          type="text"
+          id="recipe_name"
+          class="add-recipe__input add-recipe__input--title"
+        />
+
+        <label for="image_url" class="add-recipe__label">Image URL:</label>
+        <input
+          type="file"
+          id="image_url"
+          class="add-recipe__input add-recipe__input--image"
+        />
+
+        <label for="publisher" class="add-recipe__label">Publisher:</label>
+        <input
+          type="text"
+          id="publisher"
+          class="add-recipe__input add-recipe__input--publisher"
+        />
+
+        <label for="prep_time" class="add-recipe__label">Prep Time:</label>
+        <input
+          type="text"
+          id="prep_time"
+          class="add-recipe__input add-recipe__input--prep-time"
+        />
+
+        <label for="servings" class="add-recipe__label">Servings:</label>
+        <input
+          type="text"
+          id="servings"
+          class="add-recipe__input add-recipe__input--servings"
+        />
+
+        <!-- Ingredient inputs -->
+        <label for="ingredient_1" class="add-recipe__label"
+          >Ingredient 1:</label
+        >
+        <input
+          type="text"
+          id="ingredient_1"
+          class="add-recipe__input add-recipe__input--ingredient"
+        />
+
+        <label for="ingredient_2" class="add-recipe__label"
+          >Ingredient 2:</label
+        >
+        <input
+          type="text"
+          id="ingredient_2"
+          class="add-recipe__input add-recipe__input--ingredient"
+        />
+
+        <label for="ingredient_3" class="add-recipe__label"
+          >Ingredient 3:</label
+        >
+        <input
+          type="text"
+          id="ingredient_3"
+          class="add-recipe__input add-recipe__input--ingredient"
+        />
+
+        <label for="ingredient_4" class="add-recipe__label"
+          >Ingredient 4:</label
+        >
+        <input
+          type="text"
+          id="ingredient_4"
+          class="add-recipe__input add-recipe__input--ingredient"
+        />
+
+        <label for="ingredient_5" class="add-recipe__label"
+          >Ingredient 5:</label
+        >
+        <input
+          type="text"
+          id="ingredient_5"
+          class="add-recipe__input add-recipe__input--ingredient"
+        />
+
+        <label for="ingredient_6" class="add-recipe__label"
+          >Ingredient 6:</label
+        >
+        <input
+          type="text"
+          id="ingredient_6"
+          class="add-recipe__input add-recipe__input--ingredient"
+        />
+
+        <button type="submit" class="add-recipe__button">Upload</button>
+      </form>
     </div>
   </body>
 </html>
