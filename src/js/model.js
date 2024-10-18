@@ -1,14 +1,18 @@
+import { API_URL } from "./config.js";
+import { getJSON } from "./helper.js";
+
 export const state = {
     recipe: {},
+    search: {
+        query: '',
+        results: [],
+    },
+    bookmarks: [],
 }
 
 export const loadRecipe = async function (id) {
     try {
-        const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
-        if (!res.ok) throw new Error(res.status)
-        const { status, data } = await res.json();
-
-        if (status !== "success") throw new Error("Invalid id");
+        const data = await getJSON(`${API_URL}/${id}`);
 
         const { recipe } = data;
 
@@ -22,10 +26,35 @@ export const loadRecipe = async function (id) {
             ingredients: recipe.ingredients,
         }
 
-        console.log(state.recipe);
-
     } catch (e) {
         console.log(e);
 
     }
-} 
+}
+
+export const loadSearchResults = async function (query) {
+    try {
+        state.search.query = query;
+        const data = await getJSON(`${API_URL}?search=${query}`);
+        state.search.results = data.recipes.map(r => {
+            return {
+                id: r.id,
+                title: r.title,
+                publisher: r.publisher,
+                image: r.image_url
+            }
+        })
+        return state.search.results;
+    } catch (e) {
+        console.log(e);
+        throw e;
+
+    }
+}
+
+
+export const addBookmark = function (recipe) {
+    state.bookmarks.push(recipe);
+
+    if (recipe.id === state.recipe.id) state.recipe.bookmarks = true;
+}

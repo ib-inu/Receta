@@ -16,7 +16,7 @@
 .spinner-div {
   position: fixed;
   /* Fixed position relative to the viewport */
-  top: 30%;
+  top: 40%;
   /* Center vertically */
   left: 50%;
   /* Center horizontally */
@@ -301,6 +301,14 @@
   padding: 0.5em 0;
   border-bottom: 1px solid #ccc;
   margin: 0 2em;
+}
+
+.error {
+  position: relative;
+  text-align: center;
+}
+.error__message {
+  font-style: italic;
 }
 
 .add-recipe {

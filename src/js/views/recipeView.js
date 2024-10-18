@@ -1,17 +1,59 @@
 class RecipeView {
-    #parentElement = document.querySelector(".container");
-    #data
+  #parentElement = document.querySelector(".container");
+  #data
 
-    render(data) {
-        this.#data = data;
-        const markup = this.#generateMarkup()
-        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  render(data) {
+    this.#data = data;
+    const markup = this.#generateMarkup()
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
 
+  }
+  addHandlerRender(handler) {
+    window.addEventListener('hashchange', handler);
 
-    }
+  }
+  renderLoader() {
+    const markup = `
+    <div class="spinner-div">
+        <span class="spinner-div__loader"></span>
+    </div>
+    `;
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
 
-    #generateMarkup() {
-        return `
+  removeLoader() {
+    const loader = document.querySelector('.spinner-div');
+    if (loader) loader.remove();
+  }
+
+  renderError(message) {
+    const markup = `
+      <div class="error">
+        <p class="error__message">${message}</p>
+      </div>
+`
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterend", markup)
+  }
+
+  addHandlerAddBookmark(handler) {
+    // Use event delegation to handle dynamically added content
+    this.#parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.recipe-details__bookmark');
+      if (!btn) return;  // Exit if click was outside the bookmark button
+      console.log("CLICKED", btn);
+      handler();  // Call the handler
+    });
+  }
+
+  #clear() {
+    this.#parentElement.innerHTML = "";
+  }
+
+  #generateMarkup() {
+    console.log(this.#data);
+
+    return `
         <div class="recipe-details">
           <div class="recipe-details__overlay"></div>
           <div class="recipe-details__modal">
@@ -31,7 +73,7 @@ class RecipeView {
             <div class="recipe-details__info">
               <span class="recipe-details__time">${this.#data.cookingTime} Minutes</span>
               <span class="recipe-details__servings">${this.#data.servings} Servings</span>
-              <button class="recipe-details__bookmark">Bookmark</button>
+              <button class="recipe-details__bookmark">${this.#data.bookmarks ? "Bookmarked" : "Bookmark"}</button>
             </div>
 
             <div class="recipe-details__ingredients">
@@ -44,14 +86,15 @@ class RecipeView {
         </div>
       `;
 
-    }
-    #generateMarkupIngredient(ing) {
-        return `
+  }
+  #generateMarkupIngredient(ing) {
+    return `
         <li class="recipe-details__ingredient-item">
          ${ing.quantity ? `${ing.quantity}:` : ''} ${ing.description}
         </li>
     `
-    }
+  }
+
 }
 
 export default new RecipeView();
