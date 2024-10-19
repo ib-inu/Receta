@@ -37,13 +37,35 @@ class RecipeView {
   }
 
   addHandlerAddBookmark(handler) {
-    // Use event delegation to handle dynamically added content
     this.#parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.recipe-details__bookmark');
-      if (!btn) return;  // Exit if click was outside the bookmark button
-      console.log("CLICKED", btn);
-      handler();  // Call the handler
+      if (!btn) return;
+      handler();
     });
+  }
+
+  update(data) {
+    if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
+
+    this.#data = data;
+    const newMarkup = this.#generateMarkup();
+
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll("*"));
+    const curElements = Array.from(this.#parentElement.querySelectorAll("*"));
+
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+
+      if (!newEl.isEqualNode(curEl) && newEl.firstChild.nodeValue.trim() !== '') {
+        curEl.textContent = newEl.textContent
+      }
+
+      if (!newEl.isEqualNode(curEl)) {
+        Array.from(newEl.attributes).forEach(attr => curEl.setAttribute(attr.name, attr.value))
+      }
+
+    })
   }
 
   #clear() {
@@ -73,7 +95,7 @@ class RecipeView {
             <div class="recipe-details__info">
               <span class="recipe-details__time">${this.#data.cookingTime} Minutes</span>
               <span class="recipe-details__servings">${this.#data.servings} Servings</span>
-              <button class="recipe-details__bookmark">${this.#data.bookmarks ? "Bookmarked" : "Bookmark"}</button>
+              <button class="recipe-details__bookmark">${this.#data.bookmarked ? "Bookmarked" : "Bookmark"}</button>
             </div>
 
             <div class="recipe-details__ingredients">
