@@ -2,20 +2,12 @@ import * as model from './model.js';
 import bookmarksView from './views/bookmarksView.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
+import addRecipeView from './views/addRecipeView.js';
 
 const bookmarks = document.querySelector(".header__bookmark-title");
 const bookmarkList = document.querySelector(".header__bookmark-items");
 const searchForm = document.querySelector(".header__search");
 const searchInput = document.querySelector(".header__search-bar");
-const addRecipeBtn = document.querySelector(".add-recipe__icon");
-const addRecipeForm = document.querySelector(".add-recipe__form");
-const recipeList = document.querySelector(".recipe-items");
-
-
-addRecipeBtn.addEventListener('click', () => {
-    addRecipeForm.classList.toggle("open")
-    recipeList.classList.toggle("close")
-})
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -96,5 +88,11 @@ const controlAddBookmark = function () {
     bookmarksView.render(model.state.bookmarks);
 }
 
+const controlAddRecipe = function (newRecipe) {
+    model.uploadRecipe(newRecipe)
+
+}
+
 recipeView.addHandlerAddBookmark(controlAddBookmark);
-bookmarksView.addHandlerRender(controlBookmark)
+bookmarksView.addHandlerRender(controlBookmark);
+addRecipeView.addHandlerUpload(controlAddRecipe);

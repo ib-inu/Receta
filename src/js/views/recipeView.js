@@ -12,6 +12,7 @@ class RecipeView {
     window.addEventListener('hashchange', handler);
 
   }
+
   renderLoader() {
     const markup = `
     <div class="spinner-div">

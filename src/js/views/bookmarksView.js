@@ -18,7 +18,6 @@ class BookmarkView {
             </a>
             `
         ).join("")}   
-
         `
 
 
