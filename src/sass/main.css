@@ -4,6 +4,7 @@
   src: url("../fonts/bella_stella_-_personal_use.woff2") format("woff2"), url("../fonts/bella_stella_-_personal_use.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 * {
   margin: 0;
@@ -129,21 +130,42 @@
   opacity: 1;
   visibility: visible;
 }
-.header .header__bookmark-items ul {
+.header .header__bookmark-items .header__bookmark-items__lists {
   list-style: none;
+  width: 12em;
 }
-.header .header__bookmark-items ul li {
+.header .header__bookmark-items .header__bookmark-items__lists li {
   padding: 1em;
   transition: background-color 0.3s ease;
   border-bottom: 1px solid rgba(141, 141, 141, 0.552);
-  color: white;
+  display: flex;
+  gap: 1em;
+  overflow: hidden;
+  width: 12em;
 }
-.header .header__bookmark-items ul li:last-child {
+.header .header__bookmark-items .header__bookmark-items__lists li:last-child {
   border: none;
 }
-.header .header__bookmark-items ul li:hover {
+.header .header__bookmark-items .header__bookmark-items__lists li:hover {
   background-color: rgb(79, 129, 129);
   border-radius: 1.5em;
+}
+.header .header__bookmark-items .header__bookmark-items__lists li div {
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.header .header__bookmark-items .header__bookmark-items__lists li div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.header .header__bookmark-items .header__bookmark-items__lists li p {
+  color: white;
+  font-size: 10px;
 }
 
 .recipe-items {
@@ -199,7 +221,7 @@
 
 .recipe-details {
   position: fixed;
-  z-index: 10;
+  z-index: 1005;
   width: 100%;
   top: 0;
   height: 100vh;

@@ -93,14 +93,19 @@
             visibility: visible;
         }
 
-        ul {
+        .header__bookmark-items__lists {
             list-style: none;
+            width: 12em;
 
             li {
                 padding: 1em;
                 transition: background-color .3s ease;
                 border-bottom: 1px solid rgba(141, 141, 141, 0.552);
-                color: white;
+                display: flex;
+                gap: 1em;
+                overflow: hidden;
+                width: 12em;
+
 
 
                 &:last-child {
@@ -111,6 +116,26 @@
                     background-color: rgb(79, 129, 129);
                     border-radius: 1.5em;
 
+                }
+
+                div {
+                    width: 20px;
+                    height: 20px;
+                    background-color: gray;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: inline-block;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                p {
+                    color: white;
+                    font-size: 10px;
                 }
             }
         }

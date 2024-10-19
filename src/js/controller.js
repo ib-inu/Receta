@@ -1,4 +1,5 @@
 import * as model from './model.js';
+import bookmarksView from './views/bookmarksView.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 
@@ -32,7 +33,7 @@ const controlSearchResults = async (query) => {
     recipeView.renderLoader();
     try {
         const recipe = await model.loadSearchResults(query);
-        if (!recipe) throw new Error("Invalid search query");
+        if (!recipe.length) throw new Error("Invalid search query");
 
         searchView.render(recipe);
 
@@ -48,11 +49,15 @@ async function getRecipeController() {
         recipeView.renderLoader();
         const id = window.location.hash.slice(1);
 
+
         //loading recipe
         await model.loadRecipe(id);
 
+
         //rendering recipe
         recipeView.render(model.state.recipe);
+
+
 
         // Add event listener to the overlay for closing modal
         const recipeDetail = document.querySelector('.recipe-details');
@@ -72,11 +77,24 @@ async function getRecipeController() {
 
 recipeView.addHandlerRender(getRecipeController);
 
+
+
+
+const controlBookmark = function () {
+    bookmarksView.render(model.state.bookmarks);
+}
+
+
+
 const controlAddBookmark = function () {
+
     if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe)
     else model.deleteBookmark(model.state.recipe.id);
 
     recipeView.update(model.state.recipe)
+
+    bookmarksView.render(model.state.bookmarks);
 }
 
 recipeView.addHandlerAddBookmark(controlAddBookmark);
+bookmarksView.addHandlerRender(controlBookmark)

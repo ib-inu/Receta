@@ -32,7 +32,6 @@ class RecipeView {
         <p class="error__message">${message}</p>
       </div>
 `
-    this.#clear();
     this.#parentElement.insertAdjacentHTML("afterend", markup)
   }
 
@@ -68,9 +67,7 @@ class RecipeView {
     })
   }
 
-  #clear() {
-    this.#parentElement.innerHTML = "";
-  }
+
 
   #generateMarkup() {
     console.log(this.#data);
