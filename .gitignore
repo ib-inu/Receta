@@ -19,3 +19,6 @@ Thumbs.db
 
 # Ignore Parcel heap files
 heap-*.json
+
+
+.parcel-cache/
