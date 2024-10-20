@@ -1,6 +1,6 @@
-@import 'base';
-@import 'component';
-@import 'header';
-@import 'lists';
-@import 'recipe';
-@import 'upload';
+@use 'base' as *;
+@use 'component' as *;
+@use 'header' as *;
+@use 'lists' as *;
+@use 'recipe' as *;
+@use 'upload' as *;

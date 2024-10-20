@@ -16,3 +16,6 @@ build/
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+# Ignore Parcel heap files
+heap-*.json

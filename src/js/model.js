@@ -1,5 +1,5 @@
-import { API_URL } from "./config.js";
-import { getJSON } from "./helper.js";
+import { API_URL, KEY } from "./config.js";
+import { getJSON, sendJSON } from "./helper.js";
 
 export const state = {
     recipe: {},
@@ -10,31 +10,35 @@ export const state = {
     bookmarks: [],
 }
 
+const createRecipeObject = function (data) {
+    const { recipe } = data;
+
+    return {
+        id: recipe.id,
+        title: recipe.title,
+        publisher: recipe.publisher,
+        sourceUrl: recipe.source_url,
+        image: recipe.image_url,
+        servings: recipe.servings,
+        cookingTime: recipe.cooking_time,
+        ingredients: recipe.ingredients,
+        ...(recipe.key && { key: recipe.key }),
+    };
+
+}
+
 export const loadRecipe = async function (id) {
     try {
         const data = await getJSON(`${API_URL}/${id}`);
-
-        const { recipe } = data;
-
-        state.recipe = {
-            id: recipe.id,
-            title: recipe.title,
-            publisher: recipe.publisher,
-            image: recipe.image_url,
-            servings: recipe.servings,
-            cookingTime: recipe.cooking_time,
-            ingredients: recipe.ingredients,
-        }
-
+        state.recipe = createRecipeObject(data);
         if (state.bookmarks.some(b => b.id === id)) state.recipe.bookmarked = true;
         else state.recipe.bookmarked = false;
 
     } catch (e) {
-        console.log(e);
+        throw e;
 
     }
 }
-console.log(state.bookmarks);
 
 
 export const loadSearchResults = async function (query) {
@@ -51,7 +55,7 @@ export const loadSearchResults = async function (query) {
         })
         return state.search.results;
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         throw e;
 
     }
@@ -89,9 +93,32 @@ init();
 
 
 export const uploadRecipe = async function (newRecipe) {
-    const ingredients = Object.entries(newRecipe).filter(entry => entry[0].startsWith('ingredient') && entry[1] !== "").map(ing => {
-        const [quantity, unit, description] = ing.replaceAll(" ", '').split(',');
-        return { quantity: quantity ? +quantity : null, unit, description };
-    });
-    console.log(ingredients);
+    try {
+
+        const ingredients = Object.entries(newRecipe).filter(entry => entry[0].startsWith('ingredient') && entry[1] !== "").map(ing => {
+            const ingArr = ing[1].replaceAll(" ", '').split(',');
+            if (ingArr.length !== 3) throw new Error("Wrong Ingredient Format! Please use the correct format..")
+            const [quantity, unit, description] = ingArr;
+            return { quantity: quantity ? +quantity : null, unit, description };
+        });
+
+
+
+        const recipe = {
+            title: newRecipe.title,
+            source_url: newRecipe.sourceUrl,
+            image_url: newRecipe.image,
+            publisher: newRecipe.publisher,
+            cooking_time: +newRecipe.cookingTime,
+            servings: +newRecipe.servings,
+            ingredients,
+        }
+
+        const data = await sendJSON(`${API_URL}/?key=${KEY}`, recipe);
+        state.recipe = createRecipeObject(data.data);
+        addBookmark(state.recipe);
+    } catch (e) {
+        throw e;
+    }
+
 }

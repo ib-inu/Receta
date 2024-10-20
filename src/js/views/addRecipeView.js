@@ -1,6 +1,5 @@
 class AddRecipeView {
     #parentElement = document.querySelector(".add-recipe__form");
-
     addRecipeForm = document.querySelector(".add-recipe__form");
     addRecipeBtn = document.querySelector(".add-recipe__icon");
     constructor() {
@@ -10,6 +9,9 @@ class AddRecipeView {
 
     toggleForm() {
         this.addRecipeForm.classList.toggle("open");
+    }
+    closeForm() {
+        this.addRecipeForm.classList.remove("open");
     }
 
     addHandlerUpload(handler) {

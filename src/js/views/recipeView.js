@@ -8,6 +8,7 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
 
   }
+
   addHandlerRender(handler) {
     window.addEventListener('hashchange', handler);
 
@@ -71,8 +72,6 @@ class RecipeView {
 
 
   #generateMarkup() {
-    console.log(this.#data);
-
     return `
         <div class="recipe-details">
           <div class="recipe-details__overlay"></div>

@@ -19,8 +19,6 @@ class BookmarkView {
             `
         ).join("")}   
         `
-
-
     }
 
     render(data) {

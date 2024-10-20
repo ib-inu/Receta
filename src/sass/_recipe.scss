@@ -1,3 +1,7 @@
+@use 'base';
+@use 'sass:color';
+
+
 .recipe-details {
     position: fixed;
     z-index: 1005;
@@ -79,7 +83,7 @@
     }
 
     &__bookmark {
-        background-color: $primary-color;
+        background-color: base.$primaryColor;
         color: white;
         border: none;
         padding: 0.5em 1em;
@@ -94,7 +98,7 @@
         }
 
         &:hover {
-            background-color: lighten($primary-color , 10%);
+            background-color: color.adjust(base.$primaryColor, $lightness: 10%);
         }
     }
 
@@ -120,14 +124,4 @@
             }
         }
     }
-}
-
-.error {
-    position: relative;
-    text-align: center;
-
-    &__message {
-        font-style: italic;
-    }
-
 }

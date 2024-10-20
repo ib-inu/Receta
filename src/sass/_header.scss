@@ -1,9 +1,11 @@
+@use 'base';
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2em;
-    box-shadow: 0 0 5px $primary-color;
+    box-shadow: 0 0 5px base.$primaryColor;
     font-size: 1.2em;
 
     @media (max-width:400px) {
@@ -78,7 +80,7 @@
     .header__bookmark-items {
         z-index: 1001;
         position: absolute;
-        background-color: $primary-color;
+        background-color: base.$primaryColor;
         right: 1em;
         border-radius: 1.5em;
         overflow: hidden;

@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="src/sass/main.css" />
+    <link rel="stylesheet" href="src/sass/main.scss" />
     <link
       rel="preload"
       href="/src/fonts/bella_stella_-_personal_use.woff2"
@@ -55,15 +55,26 @@
 
         <label for="recipe_name" class="add-recipe__label">Title:</label>
         <input
+          required
           type="text"
           id="recipe_name"
           name="title"
+          placeholder="recipe"
           class="add-recipe__input add-recipe__input--title"
         />
 
+        <label for="source-url" class="add-recipe__label">SOURCE URL</label>
+        <input
+          type="text"
+          placeholder="source url"
+          id="source-url"
+          name="sourceUrl"
+          class="add-recipe__input add-recipe__input--image"
+        />
         <label for="image_url" class="add-recipe__label">Image URL:</label>
         <input
-          type="file"
+          type="text"
+          placeholder="image url"
           id="image_url"
           name="image"
           class="add-recipe__input add-recipe__input--image"
@@ -72,6 +83,7 @@
         <label for="publisher" class="add-recipe__label">Publisher:</label>
         <input
           type="text"
+          placeholder="publisher"
           id="publisher"
           name="publisher"
           class="add-recipe__input add-recipe__input--publisher"
@@ -80,14 +92,16 @@
         <label for="prep_time" class="add-recipe__label">Prep Time:</label>
         <input
           type="text"
+          placeholder="cooking time"
           id="prep_time"
-          name="prepTime"
+          name="cookingTime"
           class="add-recipe__input add-recipe__input--prep-time"
         />
 
         <label for="servings" class="add-recipe__label">Servings:</label>
         <input
           type="text"
+          placeholder="servings"
           id="servings"
           name="servings"
           class="add-recipe__input add-recipe__input--servings"
@@ -99,6 +113,7 @@
         >
         <input
           type="text"
+          placeholder="0.5,kg,Rice"
           id="ingredient_1"
           name="ingredient1"
           class="add-recipe__input add-recipe__input--ingredient"
@@ -109,6 +124,7 @@
         >
         <input
           type="text"
+          placeholder="0.5,kg,Rice"
           id="ingredient_2"
           name="ingredient2"
           class="add-recipe__input add-recipe__input--ingredient"
@@ -119,6 +135,7 @@
         >
         <input
           type="text"
+          placeholder="0.5,kg,Rice"
           id="ingredient_3"
           name="ingredient3"
           class="add-recipe__input add-recipe__input--ingredient"
@@ -129,6 +146,7 @@
         >
         <input
           type="text"
+          placeholder="0.5,kg,Rice"
           id="ingredient_4"
           name="ingredient4"
           class="add-recipe__input add-recipe__input--ingredient"
@@ -139,6 +157,7 @@
         >
         <input
           type="text"
+          placeholder="0.5,kg,Rice"
           id="ingredient_5"
           name="ingredient5"
           class="add-recipe__input add-recipe__input--ingredient"
@@ -149,6 +168,7 @@
         >
         <input
           type="text"
+          placeholder="0.5,kg,Rice"
           id="ingredient_6"
           name="ingredient6"
           class="add-recipe__input add-recipe__input--ingredient"

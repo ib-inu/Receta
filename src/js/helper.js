@@ -19,23 +19,30 @@ export const getJSON = async function (url) {
 
     } catch (e) {
         throw e;
-
     }
 
 }
 
+export const sendJSON = async function (url, uploadData) {
+    try {
+        const fetchPro = fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(uploadData),
+        });
 
-export function useLocalStorageState(key, initialState) {
-    // Retrieve stored value from localStorage, or use the initial state if none exists
-    let storedValue = localStorage.getItem(key);
-    let value = storedValue ? JSON.parse(storedValue) : initialState;
+        const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
+        const resData = await res.json();
 
-    // Function to update both the state and localStorage
-    function setValue(newValue) {
-        value = newValue; // Update the internal value
-        localStorage.setItem(key, JSON.stringify(newValue)); // Save to localStorage
+        if (!res.ok) {
+            throw new Error(`${res.status} - ${resData.message || 'Bad Request'}`);
+        }
+
+        return resData;
+    } catch (e) {
+        throw e;
     }
 
-    // Return the value and setter function
-    return [value, setValue];
 }

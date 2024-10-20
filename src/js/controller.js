@@ -41,17 +41,10 @@ async function getRecipeController() {
         recipeView.renderLoader();
         const id = window.location.hash.slice(1);
 
-
-        //loading recipe
         await model.loadRecipe(id);
 
-
-        //rendering recipe
         recipeView.render(model.state.recipe);
 
-
-
-        // Add event listener to the overlay for closing modal
         const recipeDetail = document.querySelector('.recipe-details');
         const overlay = document.querySelector('.recipe-details__overlay');
 
@@ -61,15 +54,13 @@ async function getRecipeController() {
         });
 
     } catch (e) {
-        console.log(e);
+        recipeView.renderError(e);
     } finally {
         recipeView.removeLoader()
     }
 }
 
 recipeView.addHandlerRender(getRecipeController);
-
-
 
 
 const controlBookmark = function () {
@@ -88,9 +79,29 @@ const controlAddBookmark = function () {
     bookmarksView.render(model.state.bookmarks);
 }
 
-const controlAddRecipe = function (newRecipe) {
-    model.uploadRecipe(newRecipe)
+const controlAddRecipe = async function (newRecipe) {
+    try {
+        recipeView.renderLoader();
+        await model.uploadRecipe(newRecipe);
 
+        recipeView.render(model.state.recipe);
+        const recipeDetail = document.querySelector('.recipe-details');
+        const overlay = document.querySelector('.recipe-details__overlay');
+
+        overlay.addEventListener('click', () => {
+            recipeDetail.remove();
+            history.pushState("", document.title, window.location.pathname);
+        });
+
+        setTimeout(function () {
+            addRecipeView.closeForm()
+        }, 2000)
+
+    } catch (e) {
+        recipeView.renderError(e);
+    } finally {
+        recipeView.removeLoader();
+    }
 }
 
 recipeView.addHandlerAddBookmark(controlAddBookmark);
