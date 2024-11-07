@@ -16,6 +16,8 @@
         height: 700px;
     }
 
+
+
     &__overlay {
         position: absolute;
         top: 0;
@@ -40,6 +42,32 @@
         grid-gap: 1em;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         text-align: center;
+
+        @media (max-height: 690px) {
+            transform: translateY(-30px);
+        }
+
+        @media (max-height: 600px) {
+            margin-bottom: 10px;
+        }
+
+        @media (max-height: 570px) {
+            margin-bottom: 10vw;
+        }
+
+        @media (max-height: 520px) {
+            justify-self: baseline;
+        }
+
+        @media (max-height: 500px) {
+            margin-bottom: 15vw;
+        }
+
+        @media (max-height: 560px) and (max-width:400px) {
+            margin-bottom: 30vw;
+        }
+
+
 
 
     }
@@ -107,6 +135,11 @@
 
         h2 {
             text-align: center;
+
+            @media (max-width: 300px) {
+                font-size: 18px;
+            }
+
         }
 
         &-list {

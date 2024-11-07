@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2em;
+    padding: 1em;
     box-shadow: 0 0 5px base.$primaryColor;
     font-size: 1.2em;
 
@@ -19,6 +19,10 @@
 
         @media (max-width:400px) {
             font-size: 2em;
+        }
+
+        @media (max-width:300px) {
+            font-size: 1.5em;
         }
     }
 
@@ -36,6 +40,25 @@
 
             @media (max-width:500px) {
                 width: 10em;
+            }
+
+            @media (max-width:350px) {
+                height: 2em;
+                padding: .5em;
+
+                &::placeholder {
+                    font-size: .8rem;
+                }
+            }
+
+            @media (max-width:270px) {
+                width: 8em;
+                // padding-top: 2px;
+                font-size: .7em;
+
+                &::placeholder {
+                    font-size: .6rem;
+                }
             }
 
             &:focus {
@@ -63,6 +86,15 @@
             &:hover {
                 background-color: #0056b3;
             }
+
+            @media (max-width:350px) {
+                width: 1.5em;
+                height: 1.5em;
+            }
+
+            @media (max-width:270px) {
+                transform: translate(10px, -45%);
+            }
         }
     }
 
@@ -74,6 +106,10 @@
 
         &:hover {
             color: rgb(79, 129, 129);
+        }
+
+        @media (max-width:300px) {
+            font-size: .8em;
         }
     }
 
