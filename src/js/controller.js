@@ -13,6 +13,7 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const inputValue = searchInput.value;
     if (inputValue.length < 2) return;
+    searchInput.blur();
     controlSearchResults(inputValue);
 
 });
