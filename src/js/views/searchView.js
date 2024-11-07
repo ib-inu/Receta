@@ -1,11 +1,12 @@
 class SearchView {
-    #parentElement = document.querySelector(".container");
+    #parentElement = document.querySelector(".recipe-container");
     #data
 
 
     render(data) {
         this.#data = data;
         const markup = this.#generateMarkup()
+        this.#parentElement.innerHTML = "";
         this.#parentElement.insertAdjacentHTML('beforeend', markup);
 
     }
