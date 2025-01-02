@@ -17,26 +17,6 @@ Receta is a simple recipe finder application that allows users to browse recipes
 - **API Integration**: Handles recipe fetching from an external API.
 - **Parcel**: For bundling and building the project.
 
-## Installation and Setup
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/Receta.git
-   cd Receta
-   ```
-
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Run the Application**:
-   ```bash
-   npm start
-   ```
-
-4. Open your browser and navigate to `http://localhost:1234` to use the application.
-
 ## Usage
 
 1. **Search for Recipes**:
